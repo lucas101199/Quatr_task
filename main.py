@@ -22,7 +22,7 @@ companies = {
 
 # Get the latest 10-K report PDF from one company
 @app.get("/companies/{cik}/latest-10k")
-def latest_10k_pdf(cik: str) -> dict[str, str]:
+def latest_10k_pdf(cik: str):
     try:
         pdf_path = str(OUTPUT_DIR) + "/" + cik + "_latest_10k.pdf"
         url_report = sec_form.get_10k_form("10k-form", cik)
@@ -34,7 +34,7 @@ def latest_10k_pdf(cik: str) -> dict[str, str]:
 
 # Get PDFs for all the companies define in the dict above
 @app.get("/companies/latest-10k-all")
-def latest_10k_all_pdf() -> dict[str]:
+def latest_10k_all_pdf():
     try:
         for name, cik in companies.items():
             url_report = sec_form.get_10k_form(name, cik)
